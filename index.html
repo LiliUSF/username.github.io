@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f7">
+  <meta name="description" content="A sewing and pattern-making portfolio celebrating handmade clothes, thoughtful fitting, and custom pattern drafting.">
+  <title>Form &amp; Thread — Sewing &amp; pattern-making portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,30,1;1,9..144,400..700,30,1&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f7f5ef;
+      --white: #fffefa;
+      --ink: #26352b;
+      --muted: #777c70;
+      --green: #354b3b;
+      --green-light: #e9ede5;
+      --orange: #d96d47;
+      --line: #e5e2d9;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button, a, input, select { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(1180px, calc(100% - 64px)); margin: 0 auto; }
+
+    .topbar { height: 78px; display: flex; align-items: center; border-bottom: 1px solid rgba(38, 53, 43, .08); position: relative; z-index: 2; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; }
+    .brand-mark { width: 33px; height: 33px; border: 1.5px solid var(--green); border-radius: 50%; display: grid; place-items: center; font-family: var(--serif); font-size: 20px; line-height: 1; color: var(--green); }
+    .brand-name { font-family: var(--serif); font-size: 19px; letter-spacing: -.4px; }
+    .nav-links { display: flex; align-items: center; gap: 33px; margin-left: auto; color: #646a5f; font-size: 13px; }
+    .nav-links a:hover, .text-link:hover { color: var(--orange); }
+    .nav-cta, .button { display: inline-flex; justify-content: center; align-items: center; gap: 10px; border-radius: 4px; font-size: 12px; font-weight: 600; letter-spacing: .02em; transition: background .2s, transform .2s; }
+    .nav-cta { padding: 12px 17px; color: var(--white); background: var(--green); }
+    .nav-cta:hover, .button-primary:hover { background: #23372a; transform: translateY(-1px); }
+    .menu-toggle { display: none; }
+
+    .hero { display: grid; grid-template-columns: 1fr 1.03fr; gap: 58px; align-items: center; padding: 56px 0 75px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #75816f; text-transform: uppercase; letter-spacing: .15em; font-size: 10px; font-weight: 700; }
+    .eyebrow::before { content: ""; width: 20px; height: 1px; background: var(--orange); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 530px; margin: 23px 0 19px; font: 500 clamp(45px, 5vw, 65px)/1.08 var(--serif); letter-spacing: -1.8px; }
+    h1 em { color: var(--orange); font-weight: 500; }
+    .hero-copy { max-width: 440px; color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .hero-actions { display: flex; align-items: center; gap: 23px; margin: 27px 0 36px; }
+    .button { min-height: 47px; padding: 0 20px; }
+    .button-primary { background: var(--green); color: white; }
+    .button-light { border: 1px solid var(--line); background: transparent; color: var(--ink); }
+    .button-light:hover { background: var(--white); }
+    .text-link { font-size: 12px; font-weight: 600; }
+    .text-link span { color: var(--orange); padding-left: 5px; }
+    .social-proof { display: flex; align-items: center; gap: 13px; }
+    .social-proof-icon { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid #efcfd9; border-radius: 50%; color: var(--orange); background: #fff0f2; font-size: 18px; }
+    .avatars { display: flex; padding-left: 2px; }
+    .avatar { width: 27px; height: 27px; border: 2px solid var(--paper); border-radius: 50%; margin-left: -5px; object-fit: cover; background: #d5c7af; }
+    .social-copy { color: var(--muted); font-size: 10px; line-height: 1.6; }
+    .social-copy strong { color: var(--ink); font-size: 11px; }
+
+    .hero-visual { min-height: 476px; position: relative; }
+    .hero-image { position: absolute; inset: 0 0 0 32px; overflow: hidden; border-radius: 47% 47% 4px 4px; background: #d3c6b0; }
+    .hero-image img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
+    .image-caption { position: absolute; left: 0; bottom: 32px; max-width: 208px; padding: 16px 18px; background: var(--white); box-shadow: 0 9px 28px #242a2312; }
+    .image-caption strong { display: block; margin-bottom: 5px; font: 500 17px var(--serif); }
+    .image-caption span { color: var(--muted); font-size: 10px; }
+    .hero-stamp { position: absolute; top: 34px; left: 0; width: 83px; height: 83px; display: grid; place-content: center; border: 1px solid #fffefa9e; border-radius: 50%; color: white; background: #354b3bdb; text-align: center; transform: rotate(-9deg); }
+    .hero-stamp span:first-child { font: italic 22px var(--serif); }
+    .hero-stamp span:last-child { margin-top: 3px; font-size: 8px; text-transform: uppercase; letter-spacing: .12em; }
+
+    .trust-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .trust-inner { display: flex; justify-content: space-between; align-items: center; gap: 25px; min-height: 80px; }
+    .trust-label { color: var(--muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .trust-item { display: flex; align-items: center; gap: 9px; color: #555e52; font: 500 14px var(--serif); }
+    .trust-icon { color: var(--orange); font-size: 17px; }
+
+    .section { padding: 98px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 37px; }
+    .section-heading h2 { margin: 13px 0 0; font: 500 clamp(34px, 4vw, 44px)/1.14 var(--serif); letter-spacing: -.8px; }
+    .section-heading p { max-width: 360px; margin: 0 0 3px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .project-card { min-width: 0; overflow: hidden; background: var(--white); border: 1px solid #ebe8e0; transition: transform .22s, box-shadow .22s; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 13px 32px #26352b0c; }
+    .project-image { height: 205px; position: relative; overflow: hidden; background: #e7e4da; }
+    .project-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s; }
+    .project-card:hover .project-image img { transform: scale(1.035); }
+    .project-tag { position: absolute; top: 13px; left: 14px; padding: 7px 9px; color: var(--green); background: #fffefaed; font-size: 9px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+    .project-content { padding: 20px 21px 18px; }
+    .project-content h3 { margin-bottom: 8px; font: 500 21px var(--serif); }
+    .project-content p { min-height: 40px; margin-bottom: 18px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .project-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 13px; border-top: 1px solid var(--line); color: #71776b; font-size: 10px; }
+    .project-meta strong { color: var(--green); font-weight: 600; }
+
+    .method { background: #eaede5; }
+    .method-layout { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 74px; }
+    .method-photo { height: 415px; position: relative; overflow: hidden; }
+    .method-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .photo-note { position: absolute; bottom: 16px; left: 16px; padding: 11px 14px; background: var(--white); color: var(--green); font: italic 14px var(--serif); }
+    .method-copy h2 { max-width: 430px; margin: 15px 0; font: 500 clamp(36px, 4.2vw, 49px)/1.12 var(--serif); letter-spacing: -.9px; }
+    .method-intro { max-width: 410px; margin-bottom: 24px; color: var(--muted); font-size: 12px; line-height: 1.85; }
+    .steps { display: grid; gap: 0; }
+    .step { display: grid; grid-template-columns: 35px 1fr; gap: 14px; padding: 15px 0; border-top: 1px solid #d6dbd1; }
+    .step-number { color: var(--orange); font: italic 16px var(--serif); }
+    .step h3 { margin: 0 0 4px; font: 500 16px var(--serif); }
+    .step p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
+
+    .calculator { display: grid; grid-template-columns: .88fr 1.12fr; border: 1px solid var(--line); background: var(--white); }
+    .calculator-intro { padding: 39px 39px 34px; color: white; background: var(--green); }
+    .calculator-intro .eyebrow { color: #cad5c5; }
+    .calculator-intro h2 { margin: 15px 0 12px; font: 500 34px/1.13 var(--serif); letter-spacing: -.5px; }
+    .calculator-intro p { max-width: 300px; margin: 0; color: #d1d9ce; font-size: 11px; line-height: 1.8; }
+    .calculator-form { padding: 35px 39px; }
+    .form-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 19px; }
+    .form-top h3 { margin: 0; font: 500 19px var(--serif); }
+    .unit-select { padding: 8px 27px 8px 10px; border: 1px solid var(--line); border-radius: 2px; background: white; color: #535b50; font-size: 10px; }
+    .measurements { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field label { display: block; margin-bottom: 6px; color: #72796e; font-size: 10px; }
+    .field input { width: 100%; height: 39px; padding: 0 10px; border: 1px solid var(--line); border-radius: 2px; outline: none; color: var(--ink); background: #fffefa; font-size: 12px; }
+    .field input:focus, .unit-select:focus { border-color: #879581; box-shadow: 0 0 0 2px #354b3b12; }
+    .calculate-button { width: 100%; margin-top: 17px; border: 0; cursor: pointer; }
+    .calc-result { display: none; margin-top: 17px; padding: 14px 15px; border-left: 2px solid var(--orange); background: #f5f3ed; color: #576052; font-size: 11px; line-height: 1.7; }
+    .calc-result.is-visible { display: block; }
+    .calc-result strong { color: var(--green); }
+    .calc-result ul { margin: 9px 0; padding-left: 18px; }
+    .calc-result li { margin: 3px 0; }
+    .form-hint { margin: 12px 0 0; color: #898d82; font-size: 9px; line-height: 1.6; }
+
+    .quote { padding: 76px 20px 83px; text-align: center; }
+    .quote-mark { color: var(--orange); font: 58px/.8 var(--serif); }
+    .quote blockquote { max-width: 690px; margin: 17px auto 20px; font: italic 500 clamp(25px, 3.5vw, 35px)/1.42 var(--serif); }
+    .quote cite { color: var(--muted); font-size: 10px; font-style: normal; letter-spacing: .06em; text-transform: uppercase; }
+
+    .newsletter { padding: 54px 0; color: white; background: #354b3b; }
+    .newsletter-inner { display: flex; justify-content: space-between; align-items: center; gap: 36px; }
+    .newsletter h2 { margin: 0 0 8px; font: 500 29px var(--serif); }
+    .newsletter p { margin: 0; color: #ced7cc; font-size: 11px; }
+    .newsletter-button { flex-shrink: 0; color: var(--green); background: #ffe8ec; }
+    .newsletter-button:hover { background: white; transform: translateY(-1px); }
+    footer { padding: 24px 0; background: var(--paper); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 10px; }
+    .footer-links { display: flex; gap: 20px; }
+
+    @media (max-width: 800px) {
+      .wrap { width: min(100% - 40px, 600px); }
+      .topbar { height: 68px; }
+      .nav { gap: 15px; }
+      .menu-toggle { width: 38px; height: 38px; display: grid; place-content: center; gap: 5px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+      .menu-toggle span { width: 16px; height: 1px; background: var(--ink); }
+      .nav-cta { margin-left: auto; padding: 11px 12px; font-size: 10px; }
+      .nav-links { display: none; position: absolute; top: 67px; left: 0; right: 0; padding: 18px 20px; flex-direction: column; align-items: flex-start; gap: 19px; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .nav-links.is-open { display: flex; }
+      .hero { grid-template-columns: 1fr 1fr; gap: 25px; padding: 52px 0 58px; }
+      .hero-visual { min-height: 390px; }
+      .hero-image { left: 19px; }
+      .hero-actions { gap: 13px; }
+      .social-proof { gap: 8px; }
+      .trust-inner { flex-wrap: wrap; justify-content: center; padding: 19px 0; column-gap: 28px; row-gap: 13px; }
+      .trust-label { width: 100%; text-align: center; }
+      .section { padding: 75px 0; }
+      .portfolio-grid { gap: 12px; }
+      .project-image { height: 160px; }
+      .project-content { padding: 16px 14px; }
+      .project-content h3 { font-size: 18px; }
+      .method-layout { gap: 35px; }
+      .method-photo { height: 380px; }
+      .calculator-intro, .calculator-form { padding: 30px 24px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: calc(100% - 36px); }
+      .brand-name { font-size: 17px; }
+      .hero { display: flex; flex-direction: column; align-items: stretch; gap: 29px; padding: 43px 0 48px; }
+      h1 { max-width: 440px; margin-top: 18px; font-size: clamp(43px, 12vw, 58px); }
+      .hero-copy { font-size: 13px; }
+      .hero-actions { margin: 22px 0 24px; }
+      .hero-visual { min-height: 355px; }
+      .hero-image { left: 24px; }
+      .image-caption { left: 0; bottom: 19px; }
+      .hero-stamp { top: 17px; }
+      .trust-inner { column-gap: 18px; }
+      .trust-item { font-size: 12px; }
+      .section { padding: 64px 0; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 26px; }
+      .section-heading h2 { font-size: 36px; }
+      .portfolio-grid { grid-template-columns: 1fr; gap: 15px; }
+      .project-card { display: grid; grid-template-columns: 38% 1fr; }
+      .project-image { height: 100%; min-height: 177px; }
+      .project-tag { top: 9px; left: 8px; padding: 6px; font-size: 8px; }
+      .project-content { padding: 15px 13px; }
+      .project-content h3 { font-size: 18px; }
+      .project-content p { min-height: 0; margin-bottom: 13px; }
+      .method-layout { grid-template-columns: 1fr; gap: 28px; }
+      .method-photo { height: 300px; }
+      .method-copy h2 { font-size: 40px; }
+      .calculator { grid-template-columns: 1fr; }
+      .calculator-intro { padding: 29px 25px 25px; }
+      .calculator-intro h2 { max-width: 340px; font-size: 31px; }
+      .calculator-form { padding: 25px; }
+      .quote { padding: 60px 10px 66px; }
+      .newsletter-inner { align-items: flex-start; flex-direction: column; gap: 23px; }
+      .newsletter-button { align-self: flex-start; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+    :root {
+      --paper: #fff8f7;
+      --white: #fffdfb;
+      --ink: #49323f;
+      --muted: #846f7b;
+      --green: #75495d;
+      --green-light: #f8e9ed;
+      --orange: #c96381;
+      --line: #eedde2;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Nunito", Arial, sans-serif;
+    }
+    body {
+      background-image: radial-gradient(#eacfd7 0.7px, transparent 0.7px);
+      background-size: 18px 18px;
+    }
+    .topbar { background: #fff8f7eF; border-bottom-color: var(--line); }
+    .brand-mark { border-color: var(--orange); color: var(--orange); transform: rotate(-8deg); }
+    .brand-name { font-weight: 700; }
+    .nav-links { color: var(--muted); font-weight: 700; }
+    .nav-cta, .button { border-radius: 999px; }
+    .nav-cta, .button-primary { background: var(--green); }
+    .nav-cta:hover, .button-primary:hover { background: #593547; }
+    .eyebrow { color: #a25370; letter-spacing: .12em; }
+    .eyebrow::before { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+    h1 { letter-spacing: -1.5px; }
+    h1 em { color: var(--orange); }
+    .hero-visual { filter: drop-shadow(0 14px 20px #87516414); }
+    .hero-image {
+      inset: 0 0 0 32px;
+      border: 9px solid var(--white);
+      border-radius: 46% 46% 20px 20px;
+      background: #f2dce2;
+    }
+    .image-caption {
+      left: -8px;
+      border: 1px solid #f1dce2;
+      border-radius: 13px;
+      transform: rotate(-3deg);
+    }
+    .image-caption strong { color: var(--green); }
+    .hero-stamp {
+      border: 3px solid var(--white);
+      background: var(--orange);
+      box-shadow: 0 4px 14px #75495d24;
+      font-family: "Caveat", cursive;
+    }
+    .hero-stamp span:first-child { font: 700 25px "Caveat", cursive; }
+    .hero-stamp span:last-child { font-size: 9px; }
+    .trust-strip { background: #fff0f2; border-color: #f2dfe4; }
+    .trust-label { color: #a25370; font-weight: 800; }
+    .trust-item { color: var(--green); font-weight: 600; }
+    .trust-icon { color: var(--orange); }
+    .section-heading h2, .method-copy h2, .calculator-intro h2, .newsletter h2 { font-weight: 600; }
+    .project-card {
+      border: 1px solid #f0dfe4;
+      border-radius: 17px;
+      box-shadow: 0 5px 15px #75495d09;
+    }
+    .project-image { background: #f5e4e7; }
+    .project-image img { border-radius: 16px 16px 0 0; }
+    .project-tag {
+      border: 1px solid #f3d7df;
+      border-radius: 999px;
+      color: #8e4b65;
+      background: #fff9f7f2;
+    }
+    .project-content h3 { color: var(--green); }
+    .project-meta { border-color: #f2e4e7; }
+    .project-meta strong { color: #ad5271; }
+    .method { background: #fae9ed; }
+    .method-photo {
+      padding: 10px;
+      border: 1px solid #efcfd9;
+      border-radius: 48% 48% 17px 17px;
+      background: var(--white);
+      transform: rotate(-1.5deg);
+    }
+    .method-photo img { border-radius: 48% 48% 10px 10px; }
+    .photo-note {
+      left: 50%;
+      bottom: 16px;
+      border-radius: 5px;
+      color: var(--green);
+      box-shadow: 0 3px 12px #75495d12;
+      font: 600 21px "Caveat", cursive;
+      white-space: nowrap;
+      transform: translateX(-50%) rotate(2deg);
+    }
+    .step { border-color: #eccfd8; }
+    .step-number { color: var(--orange); font-family: "Caveat", cursive; font-size: 21px; }
+    .calculator { overflow: hidden; border: 1px solid #efdce2; border-radius: 18px; box-shadow: 0 9px 26px #75495d0c; }
+    .calculator-intro { background: #75495d; }
+    .calculator-intro .eyebrow { color: #f6d7e1; }
+    .calculator-form { background: var(--white); }
+    .unit-select, .field input { border-color: #ecdde2; border-radius: 9px; }
+    .field input { background: #fffbfa; }
+    .field input:focus, .unit-select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px #c963811a; }
+    .calc-result { border-left-color: var(--orange); border-radius: 0 10px 10px 0; background: #fff1f3; }
+    .calc-result strong { color: var(--green); }
+    .quote {
+      position: relative;
+      background: #fff0f2;
+    }
+    .quote::before, .quote::after {
+      position: absolute;
+      color: #df9caf;
+      font: 30px "Caveat", cursive;
+      content: "♡";
+    }
+    .quote::before { top: 29px; left: 12%; transform: rotate(-15deg); }
+    .quote::after { right: 12%; bottom: 28px; transform: rotate(12deg); }
+    .quote-mark { color: var(--orange); }
+    .newsletter { background: #75495d; }
+    .menu-toggle { border-color: var(--line); border-radius: 50%; }
+    .menu-toggle span { background: var(--green); }
+    @media (max-width: 800px) {
+      .nav-links { background: var(--paper); border-color: var(--line); }
+    }
+    @media (max-width: 560px) {
+      .hero-image { inset: 0 0 0 24px; }
+      .method-photo { transform: rotate(-1deg); }
+      .project-image img { border-radius: 15px 0 0 15px; }
+      .project-card { border-radius: 15px; }
+      .quote::before { left: 5%; }
+      .quote::after { right: 5%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Form and Thread home">
+        <span class="brand-mark" aria-hidden="true">f</span>
+        <span class="brand-name">form &amp; thread</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <div class="nav-links">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#about">About the studio</a>
+        <a href="#draft">Measurement calculator</a>
+      </div>
+      <a class="nav-cta" href="#draft">Draft a pattern <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">A sewing &amp; pattern-making portfolio</span>
+        <h1>Made by hand, made to fit <em>you.</em></h1>
+        <p class="hero-copy">A collection of handmade garments, thoughtful pattern work, and little details stitched with love. Every good fit begins with a pattern made for a real body.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#portfolio">See my sewing portfolio <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="#draft">Try the calculator <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="social-proof">
+          <span class="social-proof-icon" aria-hidden="true">✿</span>
+          <div class="social-copy"><strong>Slow fashion, sewn with love.</strong><br>Patterns drafted for a thoughtful fit</div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="A sewing studio with garment fabric">
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&amp;fit=crop&amp;w=1000&amp;h=1100&amp;q=85" alt="A thoughtfully styled rack of handmade-ready garments">
+        </div>
+        <div class="hero-stamp" aria-hidden="true"><span>made</span><span>with love</span></div>
+        <div class="image-caption"><strong>Little details, made by hand.</strong><span>Designed, drafted, and stitched in the studio.</span></div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Studio specialties">
+      <div class="trust-inner wrap">
+        <span class="trust-label">Made with intention</span>
+        <span class="trust-item"><span class="trust-icon" aria-hidden="true">✳</span> Custom pattern drafting</span>
+        <span class="trust-item"><span class="trust-icon" aria-hidden="true">⌁</span> Thoughtful fit</span>
+        <span class="trust-item"><span class="trust-icon" aria-hidden="true">◇</span> Handmade details</span>
+      </div>
+    </section>
+
+    <section class="section wrap" id="portfolio">
+      <div class="section-heading">
+        <div><span class="eyebrow">A few favorites</span><h2>Made in the studio.</h2></div>
+        <p>A little collection of projects exploring personal fit, beautiful fabric, and the joy of making clothes from scratch.</p>
+      </div>
+      <div class="portfolio-grid">
+        <article class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&amp;fit=crop&amp;w=800&amp;h=520&amp;q=80" alt="Carefully arranged garments and textiles ready for a sewing project" loading="lazy">
+            <span class="project-tag">Everyday favorite</span>
+          </div>
+          <div class="project-content">
+            <h3>The Sunday Linen Dress</h3>
+            <p>A softly shaped bodice and swishy skirt, drafted for a comfortable, just-right fit.</p>
+            <div class="project-meta"><span>Linen · Custom drafted</span><strong>Made slowly ✿</strong></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&amp;fit=crop&amp;w=800&amp;h=520&amp;q=80" alt="A creative work table prepared for a new making project" loading="lazy">
+            <span class="project-tag">Pattern study</span>
+          </div>
+          <div class="project-content">
+            <h3>Everyday Bodice Block</h3>
+            <p>A reusable foundation with small fit adjustments worked out in a cotton toile.</p>
+            <div class="project-meta"><span>Pattern drafting · Toile</span><strong>Fit comes first ✿</strong></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&amp;fit=crop&amp;w=800&amp;h=520&amp;q=80" alt="Beautiful fabric detail to inspire a handmade garment" loading="lazy">
+            <span class="project-tag">Little details</span>
+          </div>
+          <div class="project-content">
+            <h3>Soft Pleat Skirt</h3>
+            <p>Gentle gathers, a handmade waistband, and a favorite fabric with room to move.</p>
+            <div class="project-meta"><span>Cotton · Made to measure</span><strong>Finished by hand ✿</strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section method" id="about">
+      <div class="method-layout wrap">
+        <div class="method-photo">
+          <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&amp;fit=crop&amp;w=1000&amp;h=1000&amp;q=85" alt="A calm, light-filled creative workspace" loading="lazy">
+          <span class="photo-note">A happy little sewing corner</span>
+        </div>
+        <div class="method-copy">
+          <span class="eyebrow">Behind the stitches</span>
+          <h2>From first sketch to final stitch.</h2>
+          <p class="method-intro">Form &amp; Thread is a small sewing studio celebrating the process as much as the finished piece. Each project starts with an idea, takes shape on paper, and gets fitted in fabric before the final seams.</p>
+          <div class="steps">
+            <article class="step"><span class="step-number">01</span><div><h3>Find the fabric</h3><p>A lovely texture or color is often where a new project begins.</p></div></article>
+            <article class="step"><span class="step-number">02</span><div><h3>Draft for the body</h3><p>Measurements become a pattern, refined with a paper fitting and a fabric toile.</p></div></article>
+            <article class="step"><span class="step-number">03</span><div><h3>Make every detail count</h3><p>Careful finishing makes a handmade piece feel special from the inside out.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="draft">
+      <div class="section-heading">
+        <div><span class="eyebrow">The pattern-making toolkit</span><h2>Turn your measurements into a draft.</h2></div>
+        <p>Calculate key starting measurements for a basic skirt pattern. Use your own units, then refine the draft with a fitting toile.</p>
+      </div>
+      <div class="calculator">
+        <div class="calculator-intro">
+          <span class="eyebrow">Your personal pattern notes</span>
+          <h2>A better fit starts with your numbers.</h2>
+          <p>Enter your waist, full hip, and desired skirt length. We’ll work out the quarter measurements for a simple skirt block.</p>
+        </div>
+        <form class="calculator-form" id="draft-form">
+          <div class="form-top">
+            <h3>Skirt block measurements</h3>
+            <label>
+              <span class="sr-only">Measurement units</span>
+              <select class="unit-select" id="units" aria-label="Measurement units">
+                <option value="cm">Centimeters</option>
+                <option value="in">Inches</option>
+              </select>
+            </label>
+          </div>
+          <div class="measurements">
+            <div class="field"><label for="waist">Waist</label><input id="waist" name="waist" type="number" min="1" max="300" step="0.1" placeholder="e.g. 72" required></div>
+            <div class="field"><label for="hip">Full hip</label><input id="hip" name="hip" type="number" min="1" max="300" step="0.1" placeholder="e.g. 98" required></div>
+            <div class="field"><label for="ease">Hip ease</label><input id="ease" name="ease" type="number" min="0" max="50" step="0.1" value="4" required></div>
+            <div class="field"><label for="length">Skirt length <span id="length-unit">(cm)</span></label><input id="length" name="length" type="number" min="1" max="300" step="0.1" placeholder="e.g. 60" required></div>
+          </div>
+          <button class="button button-primary calculate-button" type="submit">Calculate my pattern measurements <span aria-hidden="true">→</span></button>
+          <div class="calc-result" id="calc-result" role="status" aria-live="polite"></div>
+          <p class="form-hint">This is a basic drafting starting point, not a finished pattern. Check your own drafting method, add seam allowance separately, and test the fit in a toile before cutting your final fabric.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="quote-mark" aria-hidden="true">“</div>
+      <blockquote>Good clothes start with good measurements, a little patience, and the joy of making something your own.</blockquote>
+      <cite>A little studio philosophy</cite>
+    </section>
+
+    <section class="newsletter">
+      <div class="newsletter-inner wrap">
+        <div><h2>Have a handmade idea in mind?</h2><p>Explore the portfolio, take your measurements, and start imagining your own one-of-a-kind piece.</p></div>
+        <a class="button newsletter-button" href="#draft">Try the measurement calculator ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner wrap">
+      <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-name">form &amp; thread</span></a>
+      <span>Made with care, and a little extra ease. © <span id="year"></span></span>
+      <div class="footer-links"><a href="#portfolio">Portfolio</a><a href="#draft">Calculator</a><a href="#home">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <style>.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }</style>
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+      navLinks.classList.toggle("is-open", !isOpen);
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        navLinks.classList.remove("is-open");
+      }
+    });
+
+    const units = document.querySelector("#units");
+    const measurementFields = ["waist", "hip", "ease", "length"];
+    let previousUnit = units.value;
+    units.addEventListener("change", () => {
+      const suffix = units.value === "cm" ? "cm" : "in";
+      const conversionFactor = previousUnit === "cm" ? 1 / 2.54 : 2.54;
+      document.querySelector("#length-unit").textContent = `(${suffix})`;
+      measurementFields.forEach((id) => {
+        const input = document.querySelector(`#${id}`);
+        if (input.value !== "") {
+          input.value = (Number(input.value) * conversionFactor).toFixed(1);
+        }
+        input.placeholder = id === "waist" ? (suffix === "cm" ? "e.g. 72" : "e.g. 28") :
+          id === "hip" ? (suffix === "cm" ? "e.g. 98" : "e.g. 38.5") :
+          id === "ease" ? (suffix === "cm" ? "e.g. 4" : "e.g. 1.5") :
+          (suffix === "cm" ? "e.g. 60" : "e.g. 24");
+      });
+      previousUnit = units.value;
+    });
+
+    document.querySelector("#draft-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+
+      const waist = Number(form.querySelector("#waist").value);
+      const hip = Number(form.querySelector("#hip").value);
+      const ease = Number(form.querySelector("#ease").value);
+      const length = Number(form.querySelector("#length").value);
+      const result = document.querySelector("#calc-result");
+      if (waist <= 0 || hip <= 0 || length <= 0 || ease < 0) {
+        result.textContent = "Enter positive measurements and a non-negative ease allowance to continue.";
+        result.classList.add("is-visible");
+        return;
+      }
+
+      const hipQuarter = (hip + ease) / 4;
+      const waistQuarter = waist / 4;
+      if (hipQuarter < waistQuarter) {
+        result.textContent = "Your full hip measurement plus ease is smaller than your waist. Check your measurements and try again.";
+        result.classList.add("is-visible");
+        return;
+      }
+
+      const unit = units.value;
+      const shaping = hipQuarter - waistQuarter;
+      result.innerHTML = `<strong>Your skirt-block starting measurements</strong><ul><li>Quarter-hip width, including ease: ${hipQuarter.toFixed(1)} ${unit}</li><li>Quarter-waist width: ${waistQuarter.toFixed(1)} ${unit}</li><li>Waist shaping per quarter panel: ${shaping.toFixed(1)} ${unit}</li><li>Skirt length: ${length.toFixed(1)} ${unit}</li></ul><span>Start with a quarter-hip-width rectangle at your chosen length. Shape the waist using your block method, then sew a toile to check the fit. Add seam allowance separately.</span>`;
+      result.classList.add("is-visible");
+    });
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
